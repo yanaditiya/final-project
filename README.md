@@ -13,6 +13,7 @@
     *   Dokumentasi dari tiap method yang ditulis.
 * Dokumentasi silakan dijadikan satu di file pdf (template menyusul). Untuk dokumentasi per method silakan ditulis langsung di source codenya seperti contoh dibawah;
 * Diperbolehkan memanfaatkan materi/teknologi yang tidak diajarkan di praktikum, misalkan penggunaan DBMS atau library-library lain. Asalkan sesuai dengan requirement;
+* Harus memanfaatkan semua materi pemrograman lanjut dari awal hingga akhir;
 * **Pengerjaan project akhir ini merupakan simulasi/miniatur dari proses pengembangan perangkat lunak yang sesungguhnya.**
 
 ### Penilaian ###
