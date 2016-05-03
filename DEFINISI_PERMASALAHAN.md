@@ -13,6 +13,8 @@ Premium | 20 | 200.000
 Suite | 20 | 350.000
 VIP | 10 | 750.000
 
+Tiap kamar pastinya memiliki nomer kamar yang berbeda dan memiliki status apakah kamar tersebut disewa apa tidak.
+
 **2)** Tiap pelanggan akan terdaftar dalam sistem dan akan mendapatkan diskon harga sewa kamar bergantung pada seberapa sering pelanggan tersebut menginap di hotelnya. Rinciannya sebagai berikut :
 
 Akumulasi Lama Sewa (hari) | Diskon
