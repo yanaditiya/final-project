@@ -1,12 +1,11 @@
 
 package tugasakhir;
 
-public class VIP extends Room{
+public class Suite extends Room {
 
-    public VIP(String name, int priceRoom, String idRoom, String status) {
+    public Suite(String name, int priceRoom, String idRoom, String status) {
         super(name, priceRoom, idRoom, status);
     }
-
 @Override
     public String getName(){
         return super.getName();
@@ -23,10 +22,7 @@ public class VIP extends Room{
     }
 
     @Override
-    public void setStatus(String status) {
+   public void setStatus(String status) {
         super.setStatus(status);
     }
-
-    
-
 }

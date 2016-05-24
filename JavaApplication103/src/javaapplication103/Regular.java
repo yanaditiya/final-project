@@ -1,13 +1,13 @@
 
 package tugasakhir;
 
-public class VIP extends Room{
+public class Regular extends Room {
 
-    public VIP(String name, int priceRoom, String idRoom, String status) {
+    public Regular(String name, int priceRoom, String idRoom, String status) {
         super(name, priceRoom, idRoom, status);
     }
 
-@Override
+   @Override
     public String getName(){
         return super.getName();
     }
@@ -23,10 +23,8 @@ public class VIP extends Room{
     }
 
     @Override
-    public void setStatus(String status) {
+  public void setStatus(String status) {
         super.setStatus(status);
     }
-
-    
 
 }
