@@ -9,8 +9,6 @@ package javaapplication103;
  *
  * @author dda
  */
-public class Hotel {
-
 public class Room  {
 
     protected String name, idRoom, status;
