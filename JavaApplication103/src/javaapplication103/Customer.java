@@ -8,14 +8,15 @@ import java.util.Calendar;
 public class Customer {
 
     protected int jam;
-    protected String id, nik, frName, ttl, checkin,checkout,kamar;
+    protected String id, nik, frName, lsName, ttl, checkin,checkout,kamar;
     
     Customer [] custData = new Customer [100];
 
-    public Customer(String id, String nik, String frName, String ttl, String checkin,String checkout,String kamar) {
+    public Customer(String id, String nik, String frName, String lsName,String ttl, String checkin,String checkout,String kamar) {
         this.id = id;
         this.nik = nik;
         this.frName = frName;
+        this.lsName = lsName;
         this.ttl = ttl;
         this.checkin = checkin;
         this.checkout= checkout;
