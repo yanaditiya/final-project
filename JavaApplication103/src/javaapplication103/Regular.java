@@ -1,5 +1,5 @@
 
-package tugasakhir;
+package javaapplication103;
 
 public class Regular extends Room {
 

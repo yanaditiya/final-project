@@ -1,4 +1,4 @@
-package tugasakhir;
+package javaapplication103;
 
 public class Room  {
 
@@ -50,10 +50,6 @@ public class Room  {
 
     public String getName() {
         return name;
-    }
-
-    public String toString() {
-        return String.format("   " + getIdRoom() + "       " + getStatus());
     }
 
 }

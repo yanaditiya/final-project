@@ -1,4 +1,4 @@
-package tugasakhir;
+package javaapplication103;
 
 public class Premium extends Room {
 
