@@ -8,14 +8,13 @@ import java.util.Calendar;
 public class Customer {
 
     protected int jam;
-    protected String id, nik, frName, lsName, ttl, checkin, checkout, kamar, password;
+    protected String nik, frName, lsName, checkin, checkout, kamar, password, id;
 
-    public Customer(String id, String nik, String frName, String lsName, String ttl, String checkin, String checkout, String kamar, String password) {
+    public Customer(String id, String nik, String frName, String lsName, String checkin, String checkout, String kamar, String password) {
         this.id = id;
         this.nik = nik;
         this.frName = frName;
         this.lsName = lsName;
-        this.ttl = ttl;
         this.checkin = checkin;
         this.checkout = checkout;
         this.kamar = kamar;
@@ -38,9 +37,6 @@ public class Customer {
         this.frName = name;
     }
 
-    public void setTtl(String ttl) {
-        this.ttl = ttl;
-    }
 
     public void setCheckin() {
         this.checkin = getTanggal();
@@ -62,9 +58,6 @@ public class Customer {
         return frName;
     }
 
-    public String getTtl() {
-        return ttl;
-    }
 
     public String getCheckin() {
         return checkin;

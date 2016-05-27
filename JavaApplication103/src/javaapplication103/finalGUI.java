@@ -1,17 +1,16 @@
 package javaapplication103;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+import java.lang.*;
 
 public class finalGUI extends javax.swing.JFrame {
 
-    String userStatus; 
-    int statReg, statPre, statSui, statVip;
+    String namDp, namBl, domisili, uName, pWord, idNum;
+    static String userStatus = "Tamu";
+    static int statReg, statPre, statSui, statVip, i;
     private static final int windowW = 890;
     private static final int windowH = 530;
     VIP[] roomVi = new VIP[10];
@@ -22,17 +21,30 @@ public class finalGUI extends javax.swing.JFrame {
 
     public finalGUI() {
 
+        for (int i = 0; i < roomVi.length; i++) {
+            roomVi[i] = new VIP("VIP", 750000, "V" + (i + 1), "Available");
+        }
+        for (int i = 0; i < roomPr.length; i++) {
+            roomPr[i] = new Premium("Premium", 200000, "P" + (i + 1), "Available");
+            roomSu[i] = new Suite("Suite", 350000, "S" + (i + 1), "Available");
+        }
+        for (int i = 0; i < roomRg.length; i++) {
+            roomRg[i] = new Regular("Regular", 100000, "R" + (i + 1), "Available");
+        }
+
         initComponents();
-        setJam();
-        setTanggal();
-        setUserID();
+        signUpPanel.setVisible(true);
+        LogInPanel.setVisible(false);
         checkInPanel.setVisible(false);
         checkOutPanel.setVisible(false);
         cReturnButton.setVisible(false);
-        infoRoomReg.setVisible(true);
-        infoRoomPre.setVisible(true);
-        infoRoomSui.setVisible(true);
-        infoRoomVip.setVisible(true);
+        setJam();
+        setTanggal();
+        setRoomStatus();
+        setRoomCounter();
+        
+        guestIDshow.setText("Selamat datang, "+userStatus);
+        
         setResizable(false);
 
     }
@@ -43,62 +55,57 @@ public class finalGUI extends javax.swing.JFrame {
     }
 
     public void setRoomStatus() {
+
         for (int v = 0; v < roomVi.length; v++) {
-            int vRoom = 0;
-            if (roomVi [v].getStatus().equalsIgnoreCase("Available")) {
-                vRoom++;
+            if (roomVi[v].getStatus().equalsIgnoreCase("Available")) {
+                statVip++;
             }
-            statVip = vRoom;
-            infoRoomVip.setText("Tersedia "+statVip+" kamar");
         }
-        
+
         for (int s = 0; s < roomSu.length; s++) {
-            int sRoom = 0;
-            if (roomSu [s].getStatus().equalsIgnoreCase("Available")) {
-                sRoom++;
+            if (roomSu[s].getStatus().equalsIgnoreCase("Available")) {
+                statSui++;
             }
-            statSui = sRoom;
-            infoRoomSui.setText("Tersedia "+statSui+" kamar");
         }
-        
+
         for (int p = 0; p < roomPr.length; p++) {
-            int pRoom = 0;
-            if (roomPr [p].getStatus().equalsIgnoreCase("Available")) {
-                pRoom++;
+            if (roomPr[p].getStatus().equalsIgnoreCase("Available")) {
+                statPre++;
             }
-            statPre = pRoom;
-            infoRoomPre.setText("Tersedia "+statPre+" kamar");
         }
-        
+
         for (int r = 0; r < roomRg.length; r++) {
-            int rRoom = 0;
-            if (roomVi [r].getStatus().equalsIgnoreCase("Available")) {
-                rRoom++;
+            if (roomRg[r].getStatus().equalsIgnoreCase("Available")) {
+                statReg++;
             }
-            statReg = rRoom;
-            infoRoomReg.setText("Tersedia "+statReg+" kamar");
         }
-        
     }
 
-    public String setUserID() {
-        //this method is not final yet, further setting with login function
-        String userID = "Tamu";
-        userStatus = userID;
-        //set login and stuff status here
-        guestIDshow.setText("Selamat datang, " + userID);
+    public void setRoomCounter() {
 
-        if (userStatus.equalsIgnoreCase("Tamu")) {
-            cInButton.setVisible(false);
-            cOutButton.setVisible(false);
-
+        if (statVip == 0) {
+            infoRoomVip.setText("Sudah penuh");
         } else {
-            cInButton.setVisible(true);
-            cOutButton.setVisible(true);
-            signUpPanel.setVisible(false);
+            infoRoomVip.setText("Tersedia " + statVip + " kamar");
         }
 
-        return userStatus;
+        if (statSui == 0) {
+            infoRoomSui.setText("Sudah penuh");
+        } else {
+            infoRoomSui.setText("Tersedia " + statSui + " kamar");
+        }
+
+        if (statPre == 0) {
+            infoRoomPre.setText("Sudah penuh");
+        } else {
+            infoRoomPre.setText("Tersedia " + statPre + " kamar");
+        }
+
+        if (statReg == 0) {
+            infoRoomReg.setText("Sudah penuh");
+        } else {
+            infoRoomReg.setText("Tersedia " + statReg + " kamar");
+        }
 
     }
 
@@ -167,7 +174,6 @@ public class finalGUI extends javax.swing.JFrame {
         lbRearName = new javax.swing.JLabel();
         lbName = new javax.swing.JLabel();
         lastName = new javax.swing.JTextField();
-        lbBirthDt = new javax.swing.JLabel();
         lbNumID = new javax.swing.JLabel();
         numID = new javax.swing.JTextField();
         lbHometown = new javax.swing.JLabel();
@@ -272,63 +278,57 @@ public class finalGUI extends javax.swing.JFrame {
         });
         signUpPanel.add(lastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 110, -1));
 
-        lbBirthDt.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbBirthDt.setForeground(new java.awt.Color(255, 255, 255));
-        lbBirthDt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbBirthDt.setText("Tgl Lahir");
-        signUpPanel.add(lbBirthDt, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 20));
-
         lbNumID.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
         lbNumID.setForeground(new java.awt.Color(255, 255, 255));
         lbNumID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbNumID.setText("Nomor ID");
-        signUpPanel.add(lbNumID, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 50, 20));
+        signUpPanel.add(lbNumID, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 20));
 
         numID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numIDActionPerformed(evt);
             }
         });
-        signUpPanel.add(numID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 110, -1));
+        signUpPanel.add(numID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 110, -1));
 
         lbHometown.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
         lbHometown.setForeground(new java.awt.Color(255, 255, 255));
         lbHometown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHometown.setText("Domisili");
-        signUpPanel.add(lbHometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 40, 20));
+        signUpPanel.add(lbHometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 40, 20));
 
         Hometown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HometownActionPerformed(evt);
             }
         });
-        signUpPanel.add(Hometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 110, -1));
+        signUpPanel.add(Hometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 110, -1));
 
         lbUsername.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
         lbUsername.setForeground(new java.awt.Color(255, 255, 255));
         lbUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbUsername.setText("Username");
-        signUpPanel.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 50, 20));
+        signUpPanel.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 50, 20));
 
         Username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsernameActionPerformed(evt);
             }
         });
-        signUpPanel.add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 110, -1));
+        signUpPanel.add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 110, -1));
 
         lbPassword.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
         lbPassword.setForeground(new java.awt.Color(255, 255, 255));
         lbPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbPassword.setText("Password");
-        signUpPanel.add(lbPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 224, 50, 30));
+        signUpPanel.add(lbPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 50, 30));
 
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordActionPerformed(evt);
             }
         });
-        signUpPanel.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 110, -1));
+        signUpPanel.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 110, -1));
 
         signUpButton.setText("Daftar dan Log In");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -336,7 +336,7 @@ public class finalGUI extends javax.swing.JFrame {
                 signUpButtonActionPerformed(evt);
             }
         });
-        signUpPanel.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 160, -1));
+        signUpPanel.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 160, -1));
 
         logInPanelButton.setText("Langsung Log In");
         logInPanelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -594,7 +594,7 @@ public class finalGUI extends javax.swing.JFrame {
 
         infoRoomReg.setForeground(new java.awt.Color(255, 255, 255));
         infoRoomReg.setText("Regular room number");
-        regHomePanel.add(infoRoomReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 140, -1));
+        regHomePanel.add(infoRoomReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
         getContentPane().add(regHomePanel);
         regHomePanel.setBounds(220, 90, 305, 180);
@@ -604,7 +604,7 @@ public class finalGUI extends javax.swing.JFrame {
 
         infoRoomPre.setForeground(new java.awt.Color(255, 255, 255));
         infoRoomPre.setText("Premium room number");
-        premHomePanel.add(infoRoomPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 150, -1));
+        premHomePanel.add(infoRoomPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, -1));
 
         getContentPane().add(premHomePanel);
         premHomePanel.setBounds(545, 90, 305, 180);
@@ -612,9 +612,11 @@ public class finalGUI extends javax.swing.JFrame {
         suiHomePanel.setBackground(new java.awt.Color(155, 137, 106));
         suiHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        infoRoomSui.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         infoRoomSui.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomSui.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         infoRoomSui.setText("Suite room number");
-        suiHomePanel.add(infoRoomSui, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, -1));
+        suiHomePanel.add(infoRoomSui, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 154, 150, 20));
 
         getContentPane().add(suiHomePanel);
         suiHomePanel.setBounds(220, 290, 305, 180);
@@ -622,9 +624,11 @@ public class finalGUI extends javax.swing.JFrame {
         vipHomePanel.setBackground(new java.awt.Color(143, 155, 106));
         vipHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        infoRoomVip.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         infoRoomVip.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomVip.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         infoRoomVip.setText("VIP room number");
-        vipHomePanel.add(infoRoomVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 150, -1));
+        vipHomePanel.add(infoRoomVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 154, 200, 20));
 
         getContentPane().add(vipHomePanel);
         vipHomePanel.setBounds(545, 290, 305, 180);
@@ -671,7 +675,18 @@ public class finalGUI extends javax.swing.JFrame {
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         System.out.println("User melakukan pendaftaran");
-        // TODO add your handling code here:
+        LogInPanel.setVisible(false);
+        signUpPanel.setVisible(false);
+        cInButton.setVisible(true);
+        cOutButton.setVisible(true);
+        namDp = frontName.getText();
+        namBl = lastName.getText();
+        idNum = numID.getText();
+        uName = Username.getText();
+        pWord = Password.getText();
+        custData[i] = new Customer();
+        i++;
+        guestIDshow.setText("Selamat datang, "+frontName.getText());
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void logInPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInPanelButtonActionPerformed
@@ -804,7 +819,6 @@ public class finalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel infoRoomSui;
     private javax.swing.JLabel infoRoomVip;
     private javax.swing.JTextField lastName;
-    private javax.swing.JLabel lbBirthDt;
     private javax.swing.JLabel lbFrontName;
     private javax.swing.JLabel lbHometown;
     private javax.swing.JLabel lbLogIn;
