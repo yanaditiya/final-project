@@ -1,24 +1,23 @@
-
 package javaapplication103;
 
-public class VIP extends Room{
+public class VIP extends Room {
 
     public VIP(String name, int priceRoom, String idRoom, String status) {
         super(name, priceRoom, idRoom, status);
     }
-    
-@Override
-    public String getName(){
+
+    @Override
+    public String getName() {
         return super.getName();
     }
-    
+
     @Override
-    public String getIdRoom(){
-    return super.getIdRoom();
+    public String getIdRoom() {
+        return super.getIdRoom();
     }
-    
+
     @Override
-    public String getStatus(){
+    public String getStatus() {
         return super.getStatus();
     }
 
@@ -26,7 +25,5 @@ public class VIP extends Room{
     public void setStatus(String status) {
         super.setStatus(status);
     }
-
-    
 
 }

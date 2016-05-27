@@ -1,6 +1,6 @@
 package javaapplication103;
 
-public class Room  {
+public class Room {
 
     protected String name, idRoom, status;
     protected int priceRoom;

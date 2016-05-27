@@ -10,11 +10,16 @@ import javax.swing.Timer;
 
 public class finalGUI extends javax.swing.JFrame {
 
-    String userStatus;
+    String userStatus; 
+    int statReg, statPre, statSui, statVip;
     private static final int windowW = 890;
     private static final int windowH = 530;
-    
-    
+    VIP[] roomVi = new VIP[10];
+    Suite[] roomSu = new Suite[20];
+    Premium[] roomPr = new Premium[20];
+    Regular[] roomRg = new Regular[50];
+    Customer[] custData = new Customer[100];
+
     public finalGUI() {
 
         initComponents();
@@ -24,37 +29,79 @@ public class finalGUI extends javax.swing.JFrame {
         checkInPanel.setVisible(false);
         checkOutPanel.setVisible(false);
         cReturnButton.setVisible(false);
+        infoRoomReg.setVisible(true);
+        infoRoomPre.setVisible(true);
+        infoRoomSui.setVisible(true);
+        infoRoomVip.setVisible(true);
         setResizable(false);
-        
+
     }
-    
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(windowW, windowH);
     }
-    
-    public String setUserID () {
+
+    public void setRoomStatus() {
+        for (int v = 0; v < roomVi.length; v++) {
+            int vRoom = 0;
+            if (roomVi [v].getStatus().equalsIgnoreCase("Available")) {
+                vRoom++;
+            }
+            statVip = vRoom;
+            infoRoomVip.setText("Tersedia "+statVip+" kamar");
+        }
+        
+        for (int s = 0; s < roomSu.length; s++) {
+            int sRoom = 0;
+            if (roomSu [s].getStatus().equalsIgnoreCase("Available")) {
+                sRoom++;
+            }
+            statSui = sRoom;
+            infoRoomSui.setText("Tersedia "+statSui+" kamar");
+        }
+        
+        for (int p = 0; p < roomPr.length; p++) {
+            int pRoom = 0;
+            if (roomPr [p].getStatus().equalsIgnoreCase("Available")) {
+                pRoom++;
+            }
+            statPre = pRoom;
+            infoRoomPre.setText("Tersedia "+statPre+" kamar");
+        }
+        
+        for (int r = 0; r < roomRg.length; r++) {
+            int rRoom = 0;
+            if (roomVi [r].getStatus().equalsIgnoreCase("Available")) {
+                rRoom++;
+            }
+            statReg = rRoom;
+            infoRoomReg.setText("Tersedia "+statReg+" kamar");
+        }
+        
+    }
+
+    public String setUserID() {
         //this method is not final yet, further setting with login function
         String userID = "Tamu";
         userStatus = userID;
         //set login and stuff status here
         guestIDshow.setText("Selamat datang, " + userID);
-        
-        if (userStatus.equalsIgnoreCase("Tamu")){
+
+        if (userStatus.equalsIgnoreCase("Tamu")) {
             cInButton.setVisible(false);
             cOutButton.setVisible(false);
-            
+
         } else {
             cInButton.setVisible(true);
             cOutButton.setVisible(true);
             signUpPanel.setVisible(false);
         }
-        
+
         return userStatus;
-        
-        
+
     }
-    
+
     public void setTanggal() {
         java.util.Date skrg = new java.util.Date();
         java.text.SimpleDateFormat kal = new java.text.SimpleDateFormat("dd MMMM yyyy");
@@ -72,13 +119,13 @@ public class finalGUI extends javax.swing.JFrame {
                 int nilai_menit = dateTime.getMinutes();
                 int nilai_detik = dateTime.getSeconds();
                 String ampm = "AM";
-                
-                if (nilai_jam == 24){
+
+                if (nilai_jam == 24) {
                     nilai_jam = nilai_jam - 24;
                     ampm = "AM";
                 }
-                
-                if (nilai_jam >= 13){
+
+                if (nilai_jam >= 13) {
                     nilai_jam = nilai_jam - 12;
                     ampm = "PM";
                 }
@@ -92,17 +139,17 @@ public class finalGUI extends javax.swing.JFrame {
                 if (nilai_detik <= 9) {
                     nol_detik = "0";
                 }
-                
-                if (nilai_jam == 12){
+
+                if (nilai_jam == 12) {
                     ampm = "PM";
                 }
-                
+
                 String waktu = nol_jam + Integer.toString(nilai_jam);
                 String menit = nol_menit + Integer.toString(nilai_menit);
                 String detik = nol_detik + Integer.toString(nilai_detik);
 
                 Clock.setText(waktu + ":" + menit);
-                secTick.setText(":"+detik);
+                secTick.setText(":" + detik);
                 amPm.setText(ampm);
             }
         };
@@ -169,9 +216,13 @@ public class finalGUI extends javax.swing.JFrame {
         cReturnButton = new javax.swing.JButton();
         guestIDshow = new javax.swing.JLabel();
         regHomePanel = new javax.swing.JPanel();
+        infoRoomReg = new javax.swing.JLabel();
         premHomePanel = new javax.swing.JPanel();
+        infoRoomPre = new javax.swing.JLabel();
         suiHomePanel = new javax.swing.JPanel();
+        infoRoomSui = new javax.swing.JLabel();
         vipHomePanel = new javax.swing.JPanel();
+        infoRoomVip = new javax.swing.JLabel();
         picBG = new javax.swing.JLabel();
         sideBg = new javax.swing.JLabel();
         bg1 = new javax.swing.JLabel();
@@ -539,18 +590,42 @@ public class finalGUI extends javax.swing.JFrame {
         guestIDshow.setBounds(0, 10, 180, 50);
 
         regHomePanel.setBackground(new java.awt.Color(106, 139, 155));
+        regHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        infoRoomReg.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomReg.setText("Regular room number");
+        regHomePanel.add(infoRoomReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 140, -1));
+
         getContentPane().add(regHomePanel);
         regHomePanel.setBounds(220, 90, 305, 180);
 
         premHomePanel.setBackground(new java.awt.Color(155, 106, 106));
+        premHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        infoRoomPre.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomPre.setText("Premium room number");
+        premHomePanel.add(infoRoomPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 150, -1));
+
         getContentPane().add(premHomePanel);
         premHomePanel.setBounds(545, 90, 305, 180);
 
         suiHomePanel.setBackground(new java.awt.Color(155, 137, 106));
+        suiHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        infoRoomSui.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomSui.setText("Suite room number");
+        suiHomePanel.add(infoRoomSui, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, -1));
+
         getContentPane().add(suiHomePanel);
         suiHomePanel.setBounds(220, 290, 305, 180);
 
         vipHomePanel.setBackground(new java.awt.Color(143, 155, 106));
+        vipHomePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        infoRoomVip.setForeground(new java.awt.Color(255, 255, 255));
+        infoRoomVip.setText("VIP room number");
+        vipHomePanel.add(infoRoomVip, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 150, -1));
+
         getContentPane().add(vipHomePanel);
         vipHomePanel.setBounds(545, 290, 305, 180);
 
@@ -574,7 +649,7 @@ public class finalGUI extends javax.swing.JFrame {
         checkInPanel.setVisible(true);
         cReturnButton.setVisible(true);
         cOutButton.setVisible(false);
-        
+
     }//GEN-LAST:event_cInButtonActionPerformed
 
     private void cOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cOutButtonActionPerformed
@@ -582,7 +657,7 @@ public class finalGUI extends javax.swing.JFrame {
         checkOutPanel.setVisible(true);
         cReturnButton.setVisible(true);
         cInButton.setVisible(false);
-        
+
     }//GEN-LAST:event_cOutButtonActionPerformed
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
@@ -614,7 +689,7 @@ public class finalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void frontNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frontNameActionPerformed
-        
+
     }//GEN-LAST:event_frontNameActionPerformed
 
     private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
@@ -724,6 +799,10 @@ public class finalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel icoReg;
     private javax.swing.JLabel icoSui;
     private javax.swing.JLabel icoVip;
+    private javax.swing.JLabel infoRoomPre;
+    private javax.swing.JLabel infoRoomReg;
+    private javax.swing.JLabel infoRoomSui;
+    private javax.swing.JLabel infoRoomVip;
     private javax.swing.JTextField lastName;
     private javax.swing.JLabel lbBirthDt;
     private javax.swing.JLabel lbFrontName;

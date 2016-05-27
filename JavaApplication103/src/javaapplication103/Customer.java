@@ -8,23 +8,24 @@ import java.util.Calendar;
 public class Customer {
 
     protected int jam;
-    protected String id, nik, frName, lsName, ttl, checkin,checkout,kamar;
-    
-    Customer [] custData = new Customer [100];
+    protected String id, nik, frName, lsName, ttl, checkin, checkout, kamar, password;
 
-    public Customer(String id, String nik, String frName, String lsName,String ttl, String checkin,String checkout,String kamar) {
+    public Customer(String id, String nik, String frName, String lsName, String ttl, String checkin, String checkout, String kamar, String password) {
         this.id = id;
         this.nik = nik;
         this.frName = frName;
         this.lsName = lsName;
         this.ttl = ttl;
         this.checkin = checkin;
-        this.checkout= checkout;
-        this.kamar= kamar;
+        this.checkout = checkout;
+        this.kamar = kamar;
+        this.password = password;
     }
-    public Customer(){
-        
+
+    public Customer() {
+
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -90,5 +91,4 @@ public class Customer {
         return A;
     }
 
-    
 }
