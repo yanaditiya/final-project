@@ -10,15 +10,12 @@ public class Customer {
     protected int jam;
     protected String nik, frName, lsName, checkin, checkout, kamar, password, id;
 
-    public Customer(String id, String nik, String frName, String lsName, String checkin, String checkout, String kamar, String password) {
+    public Customer(String id, String nik, String frName, String kamar) {
+        
         this.id = id;
         this.nik = nik;
         this.frName = frName;
-        this.lsName = lsName;
-        this.checkin = checkin;
-        this.checkout = checkout;
         this.kamar = kamar;
-        this.password = password;
     }
 
     public Customer() {
