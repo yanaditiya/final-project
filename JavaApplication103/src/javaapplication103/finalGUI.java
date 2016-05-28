@@ -5,12 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import java.lang.*;
+import javax.swing.JOptionPane;
 
 public class finalGUI extends javax.swing.JFrame {
 
     String namDp, namBl, domisili, uName, pWord, idNum;
     static String userStatus = "Tamu";
-    static int statReg, statPre, statSui, statVip, i;
+    static int statReg, statPre, statSui, statVip, userLog, i;
     private static final int windowW = 890;
     private static final int windowH = 530;
     VIP[] roomVi = new VIP[10];
@@ -33,8 +34,8 @@ public class finalGUI extends javax.swing.JFrame {
         }
 
         initComponents();
+        
         signUpPanel.setVisible(true);
-        LogInPanel.setVisible(false);
         checkInPanel.setVisible(false);
         checkOutPanel.setVisible(false);
         cReturnButton.setVisible(false);
@@ -52,6 +53,10 @@ public class finalGUI extends javax.swing.JFrame {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(windowW, windowH);
+    }
+    
+    public void userLogin () {
+        
     }
 
     public void setRoomStatus() {
@@ -169,32 +174,9 @@ public class finalGUI extends javax.swing.JFrame {
 
         signUpPanel = new javax.swing.JPanel();
         lbSignUp = new javax.swing.JLabel();
-        lbFrontName = new javax.swing.JLabel();
-        frontName = new javax.swing.JTextField();
-        lbRearName = new javax.swing.JLabel();
-        lbName = new javax.swing.JLabel();
-        lastName = new javax.swing.JTextField();
-        lbNumID = new javax.swing.JLabel();
-        numID = new javax.swing.JTextField();
-        lbHometown = new javax.swing.JLabel();
-        Hometown = new javax.swing.JTextField();
-        lbUsername = new javax.swing.JLabel();
-        Username = new javax.swing.JTextField();
-        lbPassword = new javax.swing.JLabel();
-        Password = new javax.swing.JPasswordField();
         signUpButton = new javax.swing.JButton();
         logInPanelButton = new javax.swing.JButton();
         lbLogInButton = new javax.swing.JLabel();
-        cInButton = new javax.swing.JButton();
-        LogInPanel = new javax.swing.JPanel();
-        lbLogIn = new javax.swing.JLabel();
-        lbUserIn = new javax.swing.JLabel();
-        userIn = new javax.swing.JTextField();
-        lbPassIn = new javax.swing.JLabel();
-        passIn = new javax.swing.JPasswordField();
-        logInButton = new javax.swing.JButton();
-        returnButton = new javax.swing.JButton();
-        cOutButton = new javax.swing.JButton();
         checkInPanel = new javax.swing.JPanel();
         pnRegClass = new javax.swing.JPanel();
         titleReg = new javax.swing.JLabel();
@@ -229,6 +211,7 @@ public class finalGUI extends javax.swing.JFrame {
         infoRoomSui = new javax.swing.JLabel();
         vipHomePanel = new javax.swing.JPanel();
         infoRoomVip = new javax.swing.JLabel();
+        bookRegPanel = new javax.swing.JPanel();
         picBG = new javax.swing.JLabel();
         sideBg = new javax.swing.JLabel();
         bg1 = new javax.swing.JLabel();
@@ -244,99 +227,15 @@ public class finalGUI extends javax.swing.JFrame {
         lbSignUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSignUp.setText("Daftar Terlebih Dahulu");
         lbSignUp.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        signUpPanel.add(lbSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 20));
+        signUpPanel.add(lbSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 180, 20));
 
-        lbFrontName.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbFrontName.setForeground(new java.awt.Color(255, 255, 255));
-        lbFrontName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbFrontName.setText("Depan");
-        signUpPanel.add(lbFrontName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 40, 20));
-
-        frontName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frontNameActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(frontName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 110, -1));
-
-        lbRearName.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbRearName.setForeground(new java.awt.Color(255, 255, 255));
-        lbRearName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbRearName.setText("Belakang");
-        signUpPanel.add(lbRearName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 50, 20));
-
-        lbName.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbName.setForeground(new java.awt.Color(255, 255, 255));
-        lbName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbName.setText("Nama");
-        signUpPanel.add(lbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 40, 20));
-
-        lastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastNameActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(lastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 110, -1));
-
-        lbNumID.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbNumID.setForeground(new java.awt.Color(255, 255, 255));
-        lbNumID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbNumID.setText("Nomor ID");
-        signUpPanel.add(lbNumID, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 50, 20));
-
-        numID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numIDActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(numID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 110, -1));
-
-        lbHometown.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbHometown.setForeground(new java.awt.Color(255, 255, 255));
-        lbHometown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbHometown.setText("Domisili");
-        signUpPanel.add(lbHometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 40, 20));
-
-        Hometown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HometownActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(Hometown, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 110, -1));
-
-        lbUsername.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lbUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbUsername.setText("Username");
-        signUpPanel.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 50, 20));
-
-        Username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 110, -1));
-
-        lbPassword.setFont(new java.awt.Font("Arial Narrow", 0, 11)); // NOI18N
-        lbPassword.setForeground(new java.awt.Color(255, 255, 255));
-        lbPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbPassword.setText("Password");
-        signUpPanel.add(lbPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 50, 30));
-
-        Password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
-            }
-        });
-        signUpPanel.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 110, -1));
-
-        signUpButton.setText("Daftar dan Log In");
+        signUpButton.setText("Daftar dan Check In");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpButtonActionPerformed(evt);
             }
         });
-        signUpPanel.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 160, -1));
+        signUpPanel.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, -1));
 
         logInPanelButton.setText("Langsung Log In");
         logInPanelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -344,87 +243,15 @@ public class finalGUI extends javax.swing.JFrame {
                 logInPanelButtonActionPerformed(evt);
             }
         });
-        signUpPanel.add(logInPanelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 160, -1));
+        signUpPanel.add(logInPanelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 160, -1));
 
         lbLogInButton.setForeground(new java.awt.Color(255, 255, 255));
         lbLogInButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLogInButton.setText("Sudah Terdaftar?");
-        signUpPanel.add(lbLogInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 304, 160, 20));
+        signUpPanel.add(lbLogInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, 20));
 
         getContentPane().add(signUpPanel);
         signUpPanel.setBounds(0, 30, 180, 360);
-
-        cInButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fachri\\Pictures\\inbutton.png")); // NOI18N
-        cInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cInButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cInButton);
-        cInButton.setBounds(0, 180, 180, 60);
-
-        LogInPanel.setBackground(new java.awt.Color(106, 139, 155));
-        LogInPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lbLogIn.setForeground(new java.awt.Color(255, 255, 255));
-        lbLogIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbLogIn.setText("Log In Terlebih Dahulu");
-        LogInPanel.add(lbLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 180, -1));
-
-        lbUserIn.setForeground(new java.awt.Color(255, 255, 255));
-        lbUserIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbUserIn.setLabelFor(userIn);
-        lbUserIn.setText("username");
-        LogInPanel.add(lbUserIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 180, -1));
-
-        userIn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        userIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userInActionPerformed(evt);
-            }
-        });
-        LogInPanel.add(userIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, -1));
-
-        lbPassIn.setForeground(new java.awt.Color(255, 255, 255));
-        lbPassIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbPassIn.setText("password");
-        LogInPanel.add(lbPassIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 180, -1));
-
-        passIn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passInActionPerformed(evt);
-            }
-        });
-        LogInPanel.add(passIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 110, 140, -1));
-
-        logInButton.setText("Masuk");
-        logInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInButtonActionPerformed(evt);
-            }
-        });
-        LogInPanel.add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 80, -1));
-
-        returnButton.setText("Kembali");
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnButtonActionPerformed(evt);
-            }
-        });
-        LogInPanel.add(returnButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 80, -1));
-
-        getContentPane().add(LogInPanel);
-        LogInPanel.setBounds(0, 30, 180, 230);
-
-        cOutButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fachri\\Pictures\\outbutton.png")); // NOI18N
-        cOutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cOutButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cOutButton);
-        cOutButton.setBounds(0, 280, 180, 60);
 
         checkInPanel.setBackground(new java.awt.Color(255, 255, 204));
         checkInPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -633,6 +460,10 @@ public class finalGUI extends javax.swing.JFrame {
         getContentPane().add(vipHomePanel);
         vipHomePanel.setBounds(545, 290, 305, 180);
 
+        bookRegPanel.setBackground(new java.awt.Color(255, 255, 204));
+        getContentPane().add(bookRegPanel);
+        bookRegPanel.setBounds(210, 80, 650, 400);
+
         picBG.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fachri\\Pictures\\bgpic.png")); // NOI18N
         getContentPane().add(picBG);
         picBG.setBounds(430, 180, 468, 328);
@@ -648,92 +479,15 @@ public class finalGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cInButtonActionPerformed
-        System.out.println("User menuju panel Check In");
-        checkInPanel.setVisible(true);
-        cReturnButton.setVisible(true);
-        cOutButton.setVisible(false);
-
-    }//GEN-LAST:event_cInButtonActionPerformed
-
-    private void cOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cOutButtonActionPerformed
-        System.out.println("User menuju panel Check Out");
-        checkOutPanel.setVisible(true);
-        cReturnButton.setVisible(true);
-        cInButton.setVisible(false);
-
-    }//GEN-LAST:event_cOutButtonActionPerformed
-
-    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("User melakukan log in");
-        LogInPanel.setVisible(false);
-        signUpPanel.setVisible(false);
-        cInButton.setVisible(true);
-        cOutButton.setVisible(true);
-    }//GEN-LAST:event_logInButtonActionPerformed
-
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        System.out.println("User melakukan pendaftaran");
-        LogInPanel.setVisible(false);
-        signUpPanel.setVisible(false);
-        cInButton.setVisible(true);
-        cOutButton.setVisible(true);
-        namDp = frontName.getText();
-        namBl = lastName.getText();
-        idNum = numID.getText();
-        uName = Username.getText();
-        pWord = Password.getText();
-        custData[i] = new Customer();
-        i++;
-        guestIDshow.setText("Selamat datang, "+frontName.getText());
+        
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void logInPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInPanelButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("User langsung menuju panel log in");
-        LogInPanel.setVisible(true);
         signUpPanel.setVisible(false);
     }//GEN-LAST:event_logInPanelButtonActionPerformed
-
-    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("User kembali ke panel Sign In");
-        LogInPanel.setVisible(false);
-        signUpPanel.setVisible(true);
-    }//GEN-LAST:event_returnButtonActionPerformed
-
-    private void frontNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frontNameActionPerformed
-
-    }//GEN-LAST:event_frontNameActionPerformed
-
-    private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lastNameActionPerformed
-
-    private void numIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numIDActionPerformed
-
-    private void HometownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HometownActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HometownActionPerformed
-
-    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsernameActionPerformed
-
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
-
-    private void userInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userInActionPerformed
-
-    private void passInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passInActionPerformed
 
     private void bookRegButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRegButtonActionPerformed
         // TODO add your handling code here:
@@ -791,24 +545,18 @@ public class finalGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Clock;
-    private javax.swing.JTextField Hometown;
-    private javax.swing.JPanel LogInPanel;
-    private javax.swing.JPasswordField Password;
-    private javax.swing.JTextField Username;
     private javax.swing.JLabel amPm;
     private javax.swing.JLabel bg1;
     private javax.swing.JButton bookPremButton;
     private javax.swing.JButton bookRegButton;
+    private javax.swing.JPanel bookRegPanel;
     private javax.swing.JButton bookSuiButton;
     private javax.swing.JButton bookVipButton;
-    private javax.swing.JButton cInButton;
-    private javax.swing.JButton cOutButton;
     private javax.swing.JButton cReturnButton;
     private javax.swing.JPanel checkInPanel;
     private javax.swing.JPanel checkOutPanel;
     private javax.swing.JLabel dMY;
     private javax.swing.JLabel descripReg;
-    private javax.swing.JTextField frontName;
     private javax.swing.JLabel guestIDshow;
     private javax.swing.JLabel icoPrem;
     private javax.swing.JLabel icoReg;
@@ -818,24 +566,10 @@ public class finalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel infoRoomReg;
     private javax.swing.JLabel infoRoomSui;
     private javax.swing.JLabel infoRoomVip;
-    private javax.swing.JTextField lastName;
-    private javax.swing.JLabel lbFrontName;
-    private javax.swing.JLabel lbHometown;
-    private javax.swing.JLabel lbLogIn;
     private javax.swing.JLabel lbLogInButton;
-    private javax.swing.JLabel lbName;
-    private javax.swing.JLabel lbNumID;
-    private javax.swing.JLabel lbPassIn;
-    private javax.swing.JLabel lbPassword;
-    private javax.swing.JLabel lbRearName;
     private javax.swing.JLabel lbSignUp;
-    private javax.swing.JLabel lbUserIn;
-    private javax.swing.JLabel lbUsername;
-    private javax.swing.JButton logInButton;
     private javax.swing.JButton logInPanelButton;
     private javax.swing.JLabel mainTitle;
-    private javax.swing.JTextField numID;
-    private javax.swing.JPasswordField passIn;
     private javax.swing.JLabel picBG;
     private javax.swing.JPanel pnPremClass;
     private javax.swing.JPanel pnRegClass;
@@ -843,7 +577,6 @@ public class finalGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnVipClass;
     private javax.swing.JPanel premHomePanel;
     private javax.swing.JPanel regHomePanel;
-    private javax.swing.JButton returnButton;
     private javax.swing.JLabel secTick;
     private javax.swing.JLabel sideBg;
     private javax.swing.JButton signUpButton;
@@ -853,7 +586,6 @@ public class finalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel titleReg;
     private javax.swing.JLabel titleSui;
     private javax.swing.JLabel titleVip;
-    private javax.swing.JTextField userIn;
     private javax.swing.JPanel vipHomePanel;
     // End of variables declaration//GEN-END:variables
 }

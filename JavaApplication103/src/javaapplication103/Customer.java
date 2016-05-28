@@ -25,6 +25,22 @@ public class Customer {
 
     }
 
+    public String getLsName() {
+        return lsName;
+    }
+
+    public void setLsName(String lsName) {
+        this.lsName = lsName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -36,7 +52,6 @@ public class Customer {
     public void setFrName(String name) {
         this.frName = name;
     }
-
 
     public void setCheckin() {
         this.checkin = getTanggal();
@@ -57,7 +72,6 @@ public class Customer {
     public String getName() {
         return frName;
     }
-
 
     public String getCheckin() {
         return checkin;
