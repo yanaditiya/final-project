@@ -5,12 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import java.lang.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class finalGUI extends javax.swing.JFrame {
 
-    String namDp, domisili, idNum, numPel;
-    int lamaInap, hargaInap;
+    String namDp, domisili, idNum, numPel, checkout;
+    int hargaInap, lamaInap;
     static String userStatus = "Tamu";
     static int statReg, statPre, statSui, statVip, userLog, i;
     private static final int windowW = 890;
@@ -524,7 +528,7 @@ public class finalGUI extends javax.swing.JFrame {
         });
         bookRegPanel.add(buttonSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 100, -1));
 
-        buttonConfirm.setText("Lanjut ►");
+        buttonConfirm.setText("Selesai");
         buttonConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonConfirmActionPerformed(evt);
@@ -794,15 +798,22 @@ public class finalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonReturnActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
-        // TODO add your handling code here:
+        bookRegPanel.setVisible(false);
+        checkInButton.setVisible(true);
+        checkOutButton.setVisible(true);
+        buttonReturn.setVisible(false);
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     private void buttonReturn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReturn1ActionPerformed
-        // TODO add your handling code here:
+        bookRegPanel.setVisible(false);
+        checkInPanel.setVisible(false);
+        buttonReturn.setVisible(true);
     }//GEN-LAST:event_buttonReturn1ActionPerformed
 
     private void buttonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmitActionPerformed
         // TODO add your handling code here:
+        buttonReturn1.setVisible(false);
+        buttonConfirm.setVisible(true);
         String idInap;
         namDp = fieldName.getText();
         idNum = fieldIdentityNum.getText();
@@ -814,7 +825,24 @@ public class finalGUI extends javax.swing.JFrame {
         }
         custData [i] = new Customer (idInap, idNum, namDp, domisili);
         statReg--;
-        jTextArea1.setText("");
+        String x = fieldStayLength.getText();
+        lamaInap = Integer.parseInt(x);
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, lamaInap);
+        Date next = cal.getTime();
+        checkout = dateFormat.format(next);
+        for (i = 0; i < roomRg.length; i++) {
+                String y = fieldStayLength.getText();
+                lamaInap = Integer.parseInt(x);
+                roomRg[i].setStatus("Booked");
+                hargaInap = roomRg[i].setPrice(lamaInap);  
+        }
+        jTextArea1.setText("Nama : "+namDp+"\nNo. Identitas : "+idNum+"\nDomisili : "
+        +domisili+"\n\nID Pelanggan : "+idInap+"\nCheck Out tanggal : "+checkout+"\n"
+                + "Biaya : Rp"+hargaInap+
+                "\n\nSimpan ID pelanggan sebagai bukti check out"+
+                "\nSegera melakukan pembayaran di resepsionis");
     }//GEN-LAST:event_buttonSubmitActionPerformed
 
     private void buttonSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSubmit1ActionPerformed

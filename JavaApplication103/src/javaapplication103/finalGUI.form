@@ -668,7 +668,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonConfirm">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Lanjut &#x25ba;"/>
+            <Property name="text" type="java.lang.String" value="Selesai"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConfirmActionPerformed"/>
